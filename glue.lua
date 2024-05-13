@@ -1,4 +1,4 @@
-IRIZZ_VERSION = "0.0.0"
+NOESIS_VERSION = "05.24 Testing"
+NOESIS_INSTALLED = true
 
-love.errhand = require("thetan.irizz.errhand")
 require("thetan.irizz.patches")

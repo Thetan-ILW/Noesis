@@ -4,3 +4,6 @@
 [submodule "mods/MinaCalc-soundsphere"]
 	path = mods/MinaCalc-soundsphere
 	url = https://github.com/Thetan-ILW/MinaCalc-soundsphere
+[submodule "mods/ModulePatcher"]
+	path = mods/ModulePatcher
+	url = https://github.com/Thetan-ILW/ModulePatcher

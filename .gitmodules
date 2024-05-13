@@ -1,0 +1,6 @@
+[submodule "mods/Irizz-Theme"]
+	path = mods/Irizz-Theme
+	url = https://github.com/Thetan-ILW/Irizz-Theme
+[submodule "mods/MinaCalc-soundsphere"]
+	path = mods/MinaCalc-soundsphere
+	url = https://github.com/Thetan-ILW/MinaCalc-soundsphere

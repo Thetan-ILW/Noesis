@@ -1,10 +1,56 @@
 local class = require("class")
-local inside = require("table_util").inside
 local flux = require("flux")
 
 ---@class sphere.JudgementView
 ---@operator call: sphere.JudgementView
 local JudgementView = class()
+
+local judgeAlias = {
+	etterna = {
+		["1"] = "marvelous",
+		["2"] = "perfect",
+		["3"] = "great",
+		["4"] = "bad",
+		["5"] = "boo",
+		miss = "miss",
+	},
+	osuMania = {
+		["1"] = "perfect",
+		["2"] = "great",
+		["3"] = "good",
+		["4"] = "ok",
+		["5"] = "meh",
+		miss = "miss",
+	},
+	osuLegacy = {
+		["1"] = "perfect",
+		["2"] = "great",
+		["3"] = "good",
+		["4"] = "ok",
+		["5"] = "meh",
+		miss = "miss",
+	},
+	quaver = {
+		["1"] = "marvelous",
+		["2"] = "perfect",
+		["3"] = "great",
+		["4"] = "good",
+		["5"] = "okay",
+		miss = "miss",
+	},
+	soundsphere = {
+		["1"] = "perfect",
+		["2"] = "not perfect",
+		miss = "miss",
+	},
+	lr2 = {
+		["1"] = "pgreat",
+		["2"] = "great",
+		["3"] = "good",
+		["4"] = "bad",
+		miss = "miss",
+	},
+}
 
 function JudgementView:load()
 	self.lastUpdateTime = -1
@@ -75,8 +121,15 @@ function JudgementView:update(dt)
 	self.lastUpdateTime = updateTime
 	self.judgement = judgement
 
+	if not self.judgement then
+		return
+	end
+
 	for name, view in pairs(self.judgements) do
+		name = judgeAlias[self.judge.scoreSystemName][name]
+
 		if name == judgement then
+			print(name)
 			view:setTime(0)
 			self.imageJudgement = view
 		else

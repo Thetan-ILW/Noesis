@@ -551,11 +551,11 @@ assert(getNoteType(1, 5, 0) == 2)
 
 local defaultJudgements = {
 	{ "miss", "Hit0", "mania-hit0" },
-	{ "meh", "Hit50", "mania-hit50" },
-	{ "ok", "Hit100", "mania-hit100" },
-	{ "good", "Hit200", "mania-hit200" },
-	{ "great", "Hit300", "mania-hit300" },
-	{ "perfect", "Hit300g", "mania-hit300g" },
+	{ "5", "Hit50", "mania-hit50" },
+	{ "4", "Hit100", "mania-hit100" },
+	{ "3", "Hit200", "mania-hit200" },
+	{ "2", "Hit300", "mania-hit300" },
+	{ "1", "Hit300g", "mania-hit300g" },
 }
 
 function OsuNoteSkin:addJudgements() -- TriggerScoreIncrease

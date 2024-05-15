@@ -2,7 +2,7 @@ local transform = require("gfx_util").transform
 local map = require("math_util").map
 local class = require("class")
 local inside = require("table_util").inside
-local hitColors = require("thetan.skin_ui.colors")
+local hitColors = require("thetan.bussy.colors")
 
 ---@class sphere.HitErrorView
 ---@operator call: sphere.HitErrorView

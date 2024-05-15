@@ -87,6 +87,10 @@ function JudgementView:animation()
 
 	local image = self.imageJudgement
 
+	if not image then
+		return
+	end
+
 	image.sx = self.scale * self.size
 	image.sy = self.scale * self.size
 	image.color = { 1, 1, 1, self.alpha }
@@ -129,7 +133,6 @@ function JudgementView:update(dt)
 		name = judgeAlias[self.judge.scoreSystemName][name]
 
 		if name == judgement then
-			print(name)
 			view:setTime(0)
 			self.imageJudgement = view
 		else

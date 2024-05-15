@@ -8,7 +8,7 @@ local ImageValueView = require("sphere.views.ImageValueView")
 
 local ImageProgressView = require("sphere.views.GameplayView.ImageProgressView")
 local CircleProgressView = require("sphere.views.GameplayView.CircleProgressView")
-local bussy = require("thetan.skin_ui.Bussy")
+local Bussy = require("thetan.bussy")
 
 ---@class sphere.OsuNoteSkin: sphere.NoteSkinVsrg
 ---@operator call: sphere.OsuNoteSkin
@@ -341,31 +341,8 @@ function OsuNoteSkin:load()
 	end
 
 	local playfield = PlayfieldVsrg(self)
-
-	function playfield:getJudge(game)
-		if self.judge then
-			return self.judge
-		end
-
-		local judgeName = game.configModel.configs.select.judgements
-		local judgements = game.rhythmModel.scoreEngine.scoreSystem.judgements
-
-		self.judge = judgements[judgeName]
-
-		return self.judge
-	end
-
-	function playfield:getOsuOD9(game)
-		if self.osuOD9 then
-			return self.osuOD9
-		end
-
-		local judgements = game.rhythmModel.scoreEngine.scoreSystem.judgements
-
-		self.osuOD9 = judgements["osu!legacy OD9"]
-
-		return self.osuOD9
-	end
+	local bussy = Bussy(playfield)
+	self.bussy = bussy
 
 	playfield:enableCamera()
 
@@ -504,7 +481,7 @@ function OsuNoteSkin:load()
 		},
 		radius = 1.5,
 		count = 20,
-	}, playfield)
+	})
 end
 
 ---@param key number
@@ -587,7 +564,7 @@ function OsuNoteSkin:addJudgements() -- TriggerScoreIncrease
 		position = 480 - position
 	end
 
-	bussy:addOsuJudgement({
+	self.bussy:addOsuJudgement({
 		x = 0,
 		y = position,
 		ox = 0.5,
@@ -596,7 +573,7 @@ function OsuNoteSkin:addJudgements() -- TriggerScoreIncrease
 		scale = 480 / 768,
 		rate = rate,
 		judgements = judgements,
-	}, self.playField)
+	})
 end
 
 local supportedImageFormats = {
@@ -669,6 +646,7 @@ function OsuNoteSkin:addScore()
 		format = "%i",
 		overlap = fonts.ScoreOverlap,
 		files = files,
+		bussy = self.bussy,
 	})
 	local score = self.playField:addScore(self.scoreConfig)
 
@@ -676,10 +654,10 @@ function OsuNoteSkin:addScore()
 	score.playfield = self.playField
 
 	function score:value()
-		local judge = self.playfield:getJudge(self.game)
+		local judge = self.bussy:getJudge(self.game)
 
 		if not judge.score then
-			judge = self.playfield:getOsuOD9(self.game)
+			judge = self.bussy:getOsuOD9(self.game)
 		end
 
 		return judge.score
@@ -700,6 +678,7 @@ function OsuNoteSkin:addAccuracy()
 		format = "%0.2f%%",
 		overlap = fonts.ScoreOverlap,
 		files = files,
+		bussy = self.bussy,
 		draw = function(self)
 			self.y = scoreConfig.height + 10
 			ImageValueView.draw(self)
@@ -710,7 +689,7 @@ function OsuNoteSkin:addAccuracy()
 	accObj.playfield = self.playField
 
 	function accObj:value()
-		local judge = self.playfield:getJudge(self.game)
+		local judge = self.bussy:getJudge(self.game)
 		return judge.accuracy or 1
 	end
 

@@ -1,6 +1,6 @@
 local NoteSkinVsrg = require("sphere.models.NoteSkinModel.NoteSkinVsrg")
 local BasePlayfield = require("sphere.models.NoteSkinModel.BasePlayfield")
-local bussy = require("thetan.skin_ui.Bussy")
+local Bussy = require("thetan.bussy")
 
 local JustConfig = require("sphere.JustConfig")
 local root = (...):match("(.+)/.-")
@@ -37,7 +37,7 @@ noteskin:setTextures({
 	{ empty = "empty.png" },
 	{ body = "4k/body.png" },
 	{ note = "4k/note.png" },
-	{ accent_note = "4k/accent.png" },
+	{ head = "4k/head.png" },
 })
 
 noteskin:setImagesAuto()
@@ -46,7 +46,7 @@ noteskin:setShortNote({
 	image = {
 		"note",
 		"note",
-		"accent_note",
+		"note",
 		"note",
 	},
 	h = config:get("noteHeight"),
@@ -54,10 +54,10 @@ noteskin:setShortNote({
 
 noteskin:setLongNote({
 	head = {
-		"note",
-		"note",
-		"note",
-		"note",
+		"head",
+		"head",
+		"head",
+		"head",
 	},
 	body = {
 		"body",
@@ -90,6 +90,7 @@ noteskin:addBga({
 })
 
 local playfield = BasePlayfield(noteskin)
+local bussy = Bussy(playfield)
 
 playfield:addBga({
 	transform = { { 1 / 2, -16 / 9 / 2 }, { 0, -7 / 9 / 2 }, 0, { 0, 16 / 9 }, { 0, 16 / 9 }, 0, 0, 0, 0 },
@@ -118,19 +119,19 @@ playfield:addGuidelines(bigAssGuideline)
 
 playfield:addNotes()
 playfield:addKeyImages({
-	h = 30,
+	h = cs,
 	padding = noteskin.unit - config:get("hitposition"),
 	pressed = {
-		"keys/key.png",
-		"keys/key.png",
-		"keys/key.png",
-		"keys/key.png",
+		"4k/key.png",
+		"4k/key.png",
+		"4k/key.png",
+		"4k/key.png",
 	},
 	released = {
-		"keys/key.png",
-		"keys/key.png",
-		"keys/key.png",
-		"keys/key.png",
+		"4k/key.png",
+		"4k/key.png",
+		"4k/key.png",
+		"4k/key.png",
 	},
 })
 
@@ -140,7 +141,7 @@ playfield:addBaseElements({ "match players", "progress" })
 
 playfield:addCombo({
 	x = -540,
-	baseline = 700,
+	baseline = 300,
 	limit = 1080,
 	align = "center",
 	font = { root .. "/font/static/ChivoMono-Medium.ttf", 80 },
@@ -179,7 +180,7 @@ end
 
 bussy:addHitError({
 	x = 0,
-	y = 50 * 1080 / 100,
+	y = 400,
 	w = cs * 4,
 	h = 40,
 	origin = {
@@ -190,15 +191,15 @@ bussy:addHitError({
 	unit = 0.12,
 	radius = 4,
 	count = 3,
-}, playfield)
+})
 
 local judges = {
 	{ "miss", "judgements/miss.png" },
-	{ "meh", "judgements/bad.png" },
-	{ "ok", "judgements/good.png" },
-	{ "good", "judgements/great.png" },
-	{ "great", "judgements/perfect.png" },
-	{ "perfect", "judgements/marvelous.png" },
+	{ "5", "judgements/bad.png" },
+	{ "4", "judgements/good.png" },
+	{ "3", "judgements/great.png" },
+	{ "2", "judgements/perfect.png" },
+	{ "1", "judgements/marvelous.png" },
 }
 
 bussy:addOsuJudgement({
@@ -224,11 +225,13 @@ bussy:addHitInfo({
 	fontColor = { 1, 1, 1, 1 },
 }, playfield)
 
+--[[
 bussy:addKeyboard({
 	lineWidth = 4,
 	keySize = 35,
 	y = 840,
 	font = { root .. "/font/static/ChivoMono-Bold.ttf", 10 },
 }, playfield)
+]]
 
 return noteskin

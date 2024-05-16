@@ -16,7 +16,7 @@ function config:draw(w, h)
 	local data = self.data
 
 	just.indent(10)
-	just.text("Aria")
+	just.text("The best skin.")
 
 	imgui.setSize(w, h, w / 2, 55)
 	data.hitposition = imgui.slider1("hitposition", data.hitposition, "%d", 240, 480, 1, "Hit position")

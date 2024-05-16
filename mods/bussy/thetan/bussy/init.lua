@@ -106,7 +106,7 @@ local char_alias = {
 	percent = "%",
 }
 
-local function findImage(path)
+function Bussy:findImage(path)
 	for _, format in ipairs(imageExt) do
 		local normal = path .. format
 		local double = path .. "@2x" .. format
@@ -131,7 +131,7 @@ local function findImage(path)
 	return nil
 end
 
-local function findAudio(path)
+function Bussy:findAudio(path)
 	for _, format in ipairs(audioExt) do
 		local audio_path = path .. format
 
@@ -145,7 +145,7 @@ function Bussy:getImageFont(group)
 	local font = {}
 
 	for _, v in ipairs(characters) do
-		local file = findImage(("%s-%s"):format(group, v))
+		local file = Bussy:findImage(("%s-%s"):format(group, v))
 
 		if file then
 			local key = char_alias[v] and char_alias[v] or v

@@ -94,6 +94,7 @@ return {
 		},
 		skin_resources_top_priority = false,
 		selected_filters = {},
+		noteskin4key = "userdata/skins/noesis_manip_circle/4key.skin.lua",
 	},
 	graphics = {
 		asynckey = false,

@@ -5,8 +5,6 @@ local JustConfig = require("sphere.JustConfig")
 local root = (...):match("(.+)/.-")
 local config = JustConfig:fromFile(root .. "/7key.config.lua")
 
-local JudgeCountView = require(root .. "/JudgeCountView")
-
 local noteskin = NoteSkinVsrg({
 	path = ...,
 	name = "Aria 7K",
@@ -333,58 +331,6 @@ playfield:addHitError({
 	radius = 2,
 	count = 20,
 })
-
-local TempoSyncedImage = require("thetan.skinUi.TempoSyncedImage")
-
-local ts = { { 1 / 2, -16 / 9 / 2 }, { 0, -7 / 9 / 2 }, 0, { 0, 16 / 9 }, { 0, 16 / 9 }, 0, 0, 0, 0 }
-
-local flandre = TempoSyncedImage({
-	x = 0, -- Coordinates from 0 to 1
-	y = 0.25,
-	w = 0.15,
-	h = 0.15,
-	transform = ts,
-	image = "flandre.png",
-	imageTransform = { 0, 0, 498, 498 }, -- x, y, width of frame, height of frame
-	frames = 12, -- How many frames is in your image
-	speed = 6, -- How many frames will be shown in one beat? 1 SPEED = 1 BEAT. Flandre claps two times in the animation, so I set this value to 6.
-})
-playfield:add(flandre)
-
-local cat = TempoSyncedImage({
-	x = 0,
-	y = 0.25 + 0.15,
-	w = 0.15,
-	h = 0.15,
-	transform = ts,
-	image = "cat.png",
-	imageTransform = { 0, 0, 432, 432 },
-	frames = 8,
-	speed = 8,
-})
-playfield:add(cat)
-
-local paimon = TempoSyncedImage({
-	x = 0,
-	y = 0.25 + 0.3,
-	w = 0.15,
-	h = 0.15,
-	transform = ts,
-	image = "paimon.png",
-	imageTransform = { 0, 0, 343, 343 },
-	frames = 16,
-	speed = 8,
-})
-
-playfield:add(paimon)
-
-playfield:add(JudgeCountView({
-	x = cs * 7 + 100,
-	y = 800,
-	transform = playfield:newLaneCenterTransform(1080),
-	font = { root .. "/Kodchasan-Bold.ttf", 24 },
-	judgeName = "osu!legacy OD9",
-}))
 
 noteskin.pauseScreen = {
 	type = "osu",

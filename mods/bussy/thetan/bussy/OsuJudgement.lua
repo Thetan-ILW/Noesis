@@ -52,6 +52,11 @@ local judgeAlias = {
 	},
 }
 
+local t1 = 0.058
+local t2 = 0.092
+local t3 = 0.188
+local t4 = 0.400
+
 function JudgementView:load()
 	self.lastUpdateTime = -1
 	self.judgement = nil
@@ -66,23 +71,29 @@ function JudgementView:load()
 	local judgements = self.game.rhythmModel.scoreEngine.scoreSystem.judgements
 
 	self.judge = judgements[judgeName]
+
+	self.timeEngine = self.game.rhythmModel.timeEngine
+
+	t1 = self.timings.t1 or t1
+	t2 = self.timings.t2 or t2
+	t3 = self.timings.t3 or t3
+	t4 = self.timings.t4 or t4
 end
 
 function JudgementView:animation()
-	local current_time = love.timer.getTime()
+	local current_time = self.timeEngine.currentTime
 	local st = self.animationState
 
 	if st == "idle" then
 		self.animationState = "start"
-		self.tween = flux.to(self, 0.058, { size = self.maxSize }):ease("expoout")
-	elseif st == "start" and current_time >= self.lastUpdateTime + 0.058 then
+		self.tween = flux.to(self, t1, { size = self.maxSize }):ease("expoout")
+	elseif st == "start" and current_time >= self.lastUpdateTime + t1 then
 		self.animationState = "back_to_normal"
-		self.tween:stop()
-		self.tween = flux.to(self, 0.092, { size = self.normalSize }):ease("quartout")
-	elseif st == "back_to_normal" and current_time >= self.lastUpdateTime + 0.233 then
+		self.tween = flux.to(self, t2, { size = self.normalSize }):ease("quartout")
+	elseif st == "back_to_normal" and current_time >= self.lastUpdateTime + t3 then
 		self.animationState = "smol"
 		self.tween:stop()
-		self.tween = flux.to(self, 0.400, { size = self.minSize }):ease("quartout")
+		self.tween = flux.to(self, t4, { size = self.minSize, alpha = 0 }):ease("quartout")
 	end
 
 	local image = self.imageJudgement

@@ -285,8 +285,15 @@
 									file on Linux.</h4>
 							</li>
 						</ul>
+						<p></p>
+						<h4>If you are a new to this game, please follow
+							<a id="first-time-install-link" href="#">this guide</a>
+							on how to add songs and skins.
+						</h4>
 					</div>
 				</div>
+
+				<hr>
 
 				<div class="row mt-5">
 					<div class="col">
@@ -331,8 +338,8 @@
 				aria-labelledby="documentation-tab">
 				<div class="row mt-5">
 					<div class="col-10">
+						<h2>Begginer's guide:</h2>
 						<p>
-							Docs page
 						</p>
 					</div>
 				</div>
@@ -367,6 +374,26 @@
 				}
 			}
 		});
+
+
+		document.getElementById('first-time-install-link').addEventListener('click', function (event) {
+			event.preventDefault();
+			var docsTab = new bootstrap.Tab(document.getElementById('documentation-tab'));
+
+			docsTab.show();
+
+			for (var i = 0; i < tabPane.children.length; i++) {
+				var child = tabPane.children[i];
+				if (child.id === 'documentation') {
+					child.classList.add('show');
+					child.classList.remove('hide');
+				} else {
+					child.classList.add('hide');
+					child.classList.remove('show');
+				}
+			}
+		});
+
 	</script>
 </body>
 

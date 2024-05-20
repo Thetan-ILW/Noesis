@@ -74,10 +74,12 @@ function JudgementView:load()
 
 	self.timeEngine = self.game.rhythmModel.timeEngine
 
-	t1 = self.timings.t1 or t1
-	t2 = self.timings.t2 or t2
-	t3 = self.timings.t3 or t3
-	t4 = self.timings.t4 or t4
+	if self.timings then
+		t1 = self.timings.t1 or t1
+		t2 = self.timings.t2 or t2
+		t3 = self.timings.t3 or t3
+		t4 = self.timings.t4 or t4
+	end
 end
 
 function JudgementView:animation()

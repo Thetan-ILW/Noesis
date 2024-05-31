@@ -6,7 +6,7 @@ require("enet")
 require("socket")
 
 if arg[2] == "debug" then
-    require("lldebugger").start()
+	require("lldebugger").start()
 end
 
 local pkg = require("aqua.package")
@@ -110,13 +110,13 @@ end
 
 require("preload")
 
-require("glue")
-
 local modloader = require("modloader")(root)
 modloader:loadMods()
 
+require("glue")
+
 local love_run = require("love_run")
-love.load = function() end  -- for compatibility with old conf.lua
+love.load = function() end -- for compatibility with old conf.lua
 local defaultLoop = love.loop or love_run()
 function love.run()
 	return function()

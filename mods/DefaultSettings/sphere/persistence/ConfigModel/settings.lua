@@ -181,5 +181,6 @@ return {
 		chartdiffs_list = false,
 		diff_column = "osu_diff",
 		locations_in_collections = false,
+		chart_preview = false,
 	},
 }

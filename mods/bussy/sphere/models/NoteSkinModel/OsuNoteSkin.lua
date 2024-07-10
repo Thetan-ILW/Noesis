@@ -477,7 +477,7 @@ function OsuNoteSkin:load()
 			color = { 1, 1, 1, 1 },
 		},
 		background = {
-			color = { 0.1, 0.1, 0.1, 0.3 },
+			color = { 0.25, 0.25, 0.25, config:get("HitErrorTransparancy") or 0.5 },
 		},
 		radius = 1.5,
 		count = 20,

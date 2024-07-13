@@ -95,6 +95,12 @@ return {
 		skin_resources_top_priority = false,
 		selected_filters = {},
 		noteskin4key = "userdata/skins/noesis_manip_circle/4key.skin.lua",
+		noteskin5key = "userdata/skins/iyase/vsrg.skin.lua",
+		noteskin6key = "userdata/skins/iyase/vsrg.skin.lua",
+		noteskin7key = "userdata/skins/iyase/vsrg.skin.lua",
+		noteskin8key = "userdata/skins/iyase/vsrg.skin.lua",
+		noteskin9key = "userdata/skins/iyase/vsrg.skin.lua",
+		noteskin10key = "userdata/skins/Orbular Flat/10k2s.skin.lua",
 	},
 	graphics = {
 		asynckey = false,

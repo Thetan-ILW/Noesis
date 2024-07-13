@@ -156,12 +156,12 @@ function noteskin:load(inputMode)
 
 	noteskin.pauseScreen = {
 		type = "osu",
-		overlay = root .. "/pause-overlay@2x.png",
-		overlayFail = root .. "/fail-background.png",
-		continue = root .. "/pause-continue@2x.png",
-		retry = root .. "/pause-retry@2x.png",
-		back = root .. "/pause-back@2x.png",
-		loop = root .. "/pause-loop.wav",
+		overlay = root .. "/pause-overlay",
+		overlayFail = root .. "/fail-background",
+		continue = root .. "/pause-continue",
+		retry = root .. "/pause-retry",
+		back = root .. "/pause-back",
+		loop = root .. "/pause-loop",
 	}
 
 	local im = InputMode(inputMode)

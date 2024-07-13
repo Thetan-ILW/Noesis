@@ -51,6 +51,7 @@ os.execute("cp glue.lua build/temp/")
 os.execute("cp -r build/soundsphere/resources/ build/temp/resources")
 
 os.execute("cp mods/ModulePatcher/ModulePatcher.lua build/temp/")
+os.execute("cp -r mods/errhand/* build/temp/")
 os.execute("cp -r mods/Irizz-Theme/* build/temp/")
 os.execute("cp -r mods/bussy/* build/temp/")
 os.execute("cp -rf mods/Discord/* build/temp/")

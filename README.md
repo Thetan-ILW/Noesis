@@ -1,2 +1,2 @@
 # Noesis
-Visit this site: https://thetan-ilw.github.io/Noesis/
+https://github.com/Thetan-ILW/gucci-mania
